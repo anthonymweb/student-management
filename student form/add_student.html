@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Background styling */
+        body {
+            background: linear-gradient(135deg, #6e93f7, #f56eb3);
+            background-image: url('image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 800px; /* Increased for landscape layout */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;;
+        }
+
+        h2 {
+            margin: 10px 0 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            font-weight:bold;
+        }
+
+        /* Adjust the width of each column in the form row */
+        .form-row .form-group {
+            margin-bottom: 1rem;
+            flex: 1; /* Equal flex for left and right */
+        }
+
+        .form-row {
+            display: flex; /* Use flex for horizontal alignment */
+            justify-content: space-between; /* Space between items */
+        }
+
+        /* Extend the fields on the right */
+        .form-group.right {
+            flex: 1.5; /* Make right fields take more space */
+        }
+
+        /* Button styling */
+        .submit-button {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6e93f7;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #587be0;
+        }
+
+        /* Animation styling */
+        .success-message {
+            display: none; /* Initially hidden */
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+            opacity: 0; /* Start invisible */
+            transition: opacity 1s ease-in-out; /* Smooth fade in */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header">
+            <h1>Anthonyl.</h1>
+            <h1>Student Form</h1>
+        </div>
+        <h2>Add Student</h2>
+        <form action="process_student.php" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-6 left">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group col-md-6 right">
+                    <label for="program">Program:</label>
+                    <input type="text" class="form-control" id="program" name="program" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 left">
+                    <label for="access_no">Access No:</label>
+                    <input type="text" class="form-control" id="access_no" name="access_no" required>
+                </div>
+                <div class="form-group col-md-6 right">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 left">
+                    <label for="contact">Contact:</label>
+                    <input type="text" class="form-control" id="contact" name="contact" required>
+                </div>
+                <div class="form-group col-md-6 right">
+                    <label for="sex">Sex:</label>
+                    <select class="form-control" id="sex" name="sex" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 left">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group col-md-6 right">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 left">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group col-md-6 right">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age" name="age" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="department_name">Department Name:</label>
+                <input type="text" class="form-control" id="department_name" name="department_name" required>
+            </div>
+            <div class="submit-button">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="success-message" id="successMessage">Form submitted successfully!</div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function showSuccessMessage() {
+            // Prevent the default form submission
+            event.preventDefault();
+            // Show the success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block'; // Show the message
+            setTimeout(() => {
+                successMessage.style.opacity = 1; // Fade in
+            }, 10); // Wait for a moment for display
+            setTimeout(() => {
+                successMessage.style.opacity = 0; // Fade out after 2 seconds
+            }, 3000);
+            return false; // Prevent actual submission for demo
+        }
+    </script>
+</body>
+</html>
